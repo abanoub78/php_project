@@ -1,0 +1,125 @@
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f9;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  color: white !important;
+  font-size: 1.1rem;
+  margin-left: 1rem;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #f8f9fa !important;
+  text-decoration: underline;
+}
+
+.search-section .form-control {
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+}
+
+.search-section .btn-primary {
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+}
+
+.card {
+  border: none;
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+  height: 250px;
+  object-fit: cover;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+footer {
+  margin-top: auto;
+}
+
+footer p {
+  font-size: 0.9rem;
+}
+
+.social-links i {
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.social-links i:hover {
+  color: #0d6efd;
+}
+
+.carousel-img {
+  height: 65vh; /* ارتفاع مناسب */
+  object-fit: cover; /* يخلي الصورة تتقص كـ cover */
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .navbar-nav .nav-link {
+    margin: 0.5rem 0;
+  }
+
+  .card-img-top {
+    height: 200px;
+  }
+}
+
+@media (max-width: 576px) {
+  .search-section .form-control {
+    margin-bottom: 0.5rem;
+  }
+
+  .search-section .btn-primary {
+    width: 100%;
+  }
+
+  .card-img-top {
+    height: 180px;
+  }
+}
