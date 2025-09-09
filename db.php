@@ -6,8 +6,8 @@ if (session_status() === PHP_SESSION_NONE) {
 class Database {
     private $host = "127.0.0.1";
     private $dbname = "Library_db";
-    private $username = "root";
-    private $password = "qw12QW!@";
+    private $username = "admin1";
+    private $password = "mustafa123";
     private $conn;
     private static $instance = null;
 
@@ -126,3 +126,4 @@ class User {
         return htmlspecialchars(stripslashes(trim($data)));
     }
 }
+?>
