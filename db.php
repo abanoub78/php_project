@@ -65,10 +65,10 @@ class User {
         }
 
         // Determine role from form input
-        $role = isset($data['is_admin']) && $data['is_admin'] === 'on' ? 'admin' : 'user';
+        $role = isset($data['is_admin']) && $data['is_admin'] === 'on' ? 'admin' : 'member';
 
         // Validate role
-        if (!in_array($role, ['user', 'admin'])) {
+        if (!in_array($role, ['member', 'admin'])) {
             throw new Exception("Invalid role value: " . htmlspecialchars($role));
         }
 
