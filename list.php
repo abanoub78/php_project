@@ -17,6 +17,20 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 require "db.php";
 $user = new User();
 $users = $user->getAll("users");
+
+$searchId = $_GET['search_id'] ?? '';
+
+
+if (!empty($searchId)) {
+    $users = $user->findById("users", $searchId);
+    if ($users) {
+        $users = [$users];
+    } else {
+        $users = [];
+    }
+} else {
+    $users = $user->getAll("users");
+}
 ?>
 
 
@@ -45,12 +59,21 @@ $users = $user->getAll("users");
   </style>
 </head>
 <body>
-  <?php 
-  
-  echo "<h2> Hello : {$_SESSION['fname']} {$_SESSION['lname']}</h2>";
-  
-  ?>
+
+
   <h2 style="text-align:center;"> Users List</h2>
+
+    <div class="container my-3">
+  <form method="get" class="d-flex justify-content-center mb-3">
+    <input type="number" name="search_id" class="form-control w-25 me-2" 
+           placeholder="Search by User ID" 
+           value="<?= htmlspecialchars($searchId) ?>">
+    <button type="submit" class="btn btn-primary">Search</button>
+    <a href="list.php" class="btn btn-secondary ms-2">Reset</a>
+  </form>
+          <a href="register.php" class="btn btn-success">Create new user</a>              
+
+</div>
 
   <table>
     <thead>
@@ -68,7 +91,6 @@ $users = $user->getAll("users");
       </tr>
     </thead>
     <tbody>
-        <a href="register.php" class="btn btn-success">Create new user</a>              
       <?php if (count($users) > 0): ?>
         <?php foreach ($users as $user): ?>
           <tr>

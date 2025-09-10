@@ -6,8 +6,8 @@ if (session_status() === PHP_SESSION_NONE) {
 class Database {
     private $host = "127.0.0.1";
     private $dbname = "Library_db";
-    private $username = "admin1";
-    private $password = "mustafa123";
+    private $username = "root";
+    private $password = "qw12QW!@";
     private $conn;
     private static $instance = null;
 
@@ -64,17 +64,12 @@ class User {
             move_uploaded_file($from, "./$imgname");
         }
 
-        // Determine role from form input
         $role = isset($data['is_admin']) && $data['is_admin'] === 'on' ? 'admin' : 'member';
-
-        // Validate role
         if (!in_array($role, ['member', 'admin'])) {
             throw new Exception("Invalid role value: " . htmlspecialchars($role));
         }
 
-        // Debug role value (remove after testing)
-        // error_log("Inserting role: '$role'");
-
+     
         $stmt = $this->db->prepare("
             INSERT INTO users (fname, lname, email, password, imgname, role)
             VALUES (:fname, :lname, :email, :password, :imgname, :role)
@@ -85,7 +80,7 @@ class User {
             ':email' => $email,
             ':password' => $password,
             ':imgname' => $imgname,
-            ':role' => $role
+            ':role' => 'member'
         ]);
         return $this->db->lastInsertId();
     }
@@ -125,5 +120,12 @@ class User {
     private function validate($data) {
         return htmlspecialchars(stripslashes(trim($data)));
     }
+ public function findById($tablename, $id) {
+    $sql = "SELECT * FROM $tablename WHERE id = :id LIMIT 1";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute([':id' => $id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC); 
 }
-?>
+
+
+}

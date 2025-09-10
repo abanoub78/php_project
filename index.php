@@ -69,7 +69,7 @@ $featured_books = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <a class="nav-link" href="books.php">Browse Books</a>
                             </li>
                              <li class="nav-item">
-                                <a class="nav-link" href="books.php">My Books</a>
+                                <a class="nav-link" href="mybooks.php">My Books</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="favorites.php">Favorites</a>
@@ -185,7 +185,7 @@ $featured_books = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <a href="bookDetails.php?id=<?= $book['book_id'] ?>" class="btn btn-sm btn-outline-primary">View Details</a>
-                                        <a href="book.php?id=<?= $book['book_id'] ?>" class="btn btn-sm btn-primary">Borrow </a>
+                                        <a href="borrow.php?id=<?= $book['book_id'] ?>" class="btn btn-sm btn-primary">Borrow</a>
                                         <a href="toggle_favorite.php?book_id=<?= $book['book_id'] ?>" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-heart"></i></a>
                                     </div>
                                 </div>
@@ -222,7 +222,7 @@ $featured_books = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <a href="bookDetails.php?id=<?= $book['book_id'] ?>" class="btn btn-sm btn-outline-primary">View Details</a>
-                                        <a href="book.php?id=<?= $book['book_id'] ?>" class="btn btn-sm btn-primary">Borrow</a>
+                                        <a href="borrow.php?id=<?= $book['book_id'] ?>" class="btn btn-sm btn-primary">Borrow</a>
                                         <a href="toggle_favorite.php?book_id=<?= $book['book_id'] ?>" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-heart"></i></a>
                                     </div>
                                 </div>
