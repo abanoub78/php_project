@@ -53,12 +53,17 @@
             <section class="admin-section mb-5">
                 <br>
                 <h3>Add New Book</h3>
+                          <?php
+                            session_start();
+                            $errors = $_SESSION['form_errors'] ?? [];
+                            unset($_SESSION['form_errors']);
+                            foreach($errors as $error){
+                                echo $error ;
+                                echo "<hr>";
+                            }
+                            ?>
                 <form action="insertBook.php" method="post" class="admin-form">
                     <div class="row">
-                        <!-- <div class="col-md-6 mb-3">
-                            <label for="id" class="form-label">ID</label>
-                            <input type="number" name="id" id="id" class="form-control" required>
-                        </div> -->
                         <div class="col-md-6 mb-3">
                             <label for="title" class="form-label">Title</label>
                             <input type="text" name="title" id="title" class="form-control" required>
@@ -73,7 +78,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="published_year" class="form-label">Published Year</label>
-                            <input type="date" name="published_year" id="published_year" class="form-control">
+                            <input type="number" name="published_year" id="published_year" class="form-control">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="copies_available" class="form-label">Copies Available</label>
@@ -86,10 +91,6 @@
                         <div class="col-md-6 mb-3">
                             <label for="cover" class="form-label">Cover Image URL</label>
                             <input type="url" name="cover" id="cover" class="form-control">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="description" class="form-label">Description</label>
-                            <textarea name="description" id="description" class="form-control" rows="4"></textarea>
                         </div>
                     </div>
                     <button type="submit" name="add_book" class="btn btn-primary">Add Book</button>
