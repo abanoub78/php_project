@@ -7,7 +7,7 @@ class Database {
     private $host = "127.0.0.1";
     private $dbname = "Library_db";
     private $username = "root";
-    private $password = "qw12QW!@";
+    private $password = "";
     private $conn;
     private static $instance = null;
 
@@ -93,7 +93,7 @@ class User {
     public function getById($tablename, $id) {
         $stmt = $this->db->prepare("SELECT * FROM $tablename WHERE id = ?");
         $stmt->execute([$id]);
-        return $stmt->fetch();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function update($tablename, $id, $data) {
