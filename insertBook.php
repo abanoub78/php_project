@@ -58,7 +58,7 @@ try {
         ':cover' => $cover,
     ])){
         $book_success = "Book added successfully.";
-        header("Location:index.php");
+        header("Location:manageBooks.php");
     } else {
         echo "Failed to add book.";
     }

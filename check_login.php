@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 try {
-    $connection = new PDO("mysql:host=127.0.0.1;dbname=Library_db", "admin1", "mustafa123");
+    $connection = new PDO("mysql:host=127.0.0.1;dbname=Library_db", "root", "qw12QW!@");
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stm = $connection->prepare("SELECT * FROM users WHERE email=?");
     $stm->execute([$_POST['email']]);

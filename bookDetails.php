@@ -26,49 +26,83 @@ if ($book_id > 0) {
 </head>
 <body>
     <!-- Header -->
-      <header class="bg-primary text-white py-3">
-        <div class="container d-flex justify-content-between align-items-center">
+  <header class="bg-primary text-white py-3">
+        <div class="container hcc d-flex justify-content-between align-items-center">
             <h1 class="h3 mb-0">📚 BookVerse</h1>
-            <nav class="navbar navbar-expand-lg navbar-dark">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="index.php">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="books.php">Browse Books</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="register.php">Register</a>
-                        </li>
-                        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Admin Panel
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="list.php">Users</a></li>
-                                    <li><a class="dropdown-item" href="admin.php">Books</a></li>
-                                </ul>
-                            </li>
-                        <?php endif; ?>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
+           <nav class="navbar navbar-expand-lg navbar-dark ms-3">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
 
+            <!-- Always show Home + Browse -->
+            <li class="nav-item">
+                <a class="nav-link active" href="index.php">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="books.php">Browse Books</a>
+            </li>
+
+            <?php if (!isset($_SESSION['user_id'])): ?>
+                <!-- Guest -->
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.php">Contact Us</a>
+                </li>
+         
+
+            <?php elseif ($_SESSION['role'] === 'member'): ?>
+                <!-- Member -->
+                <li class="nav-item">
+                    <a class="nav-link" href="mybooks.php">My Books</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="favorites.php">Favorites</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.php">Contact Us</a>
+                </li>
+
+            <?php elseif ($_SESSION['role'] === 'admin'): ?>
+                <!-- Admin -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Admin Panel
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="list.php">Users</a></li>
+                        <li><a class="dropdown-item" href="admin.php">Books</a></li>
+                    </ul>
+                </li>
+            <?php endif; ?>
+        </ul>
+    </div>
+  </nav>
+
+<!-- Right side (profile + logout/register) -->
+<div class="d-flex align-items-center gap-4">
+    <?php if (isset($_SESSION['user_id'])): ?>
+        <div class="profile d-flex align-items-center">
+            <span class="welcome-text me-2">Welcome, <?= htmlspecialchars($_SESSION['fname']) ?></span>
+            <a href="profile.php">
+                <img src="./<?= htmlspecialchars($_SESSION['imgname']) ?>" class="user-avatar">
+            </a>
+        </div>
+        <a class="nav-link" href="logout.php">Logout</a>
+    <?php else: ?>
+        <a class="nav-link" href="register.php">Register</a>
+    <?php endif; ?>
+</div>
+
+
+</header>
     <!-- Main Content -->
     <main class="container py-4">
         <section class="book-details-section">
             <?php if ($book): ?>
-                <div class="row">
+                <div class="row" style="margin-top: 100px;">
                     <div class="col-md-4 mb-4">
                         <?php if (!empty($book['cover'])): ?>
                             <img src="<?= htmlspecialchars($book['cover']) ?>" class="img-fluid rounded" alt="<?= htmlspecialchars($book['title']) ?>">
@@ -86,7 +120,7 @@ if ($book_id > 0) {
                         <p><strong>Description:</strong> <?= htmlspecialchars($book['description'] ?? 'No description available.') ?></p>
                         <div class="mt-3">
                             <?php if ($book['copies_available'] > 0): ?>
-                                <a href="borrow.php?id=<?= $book['book_id'] ?>" class="btn btn-primary">Borrow Book</a>
+                               <a href="borrow.php?id=<?= $book['book_id'] ?>" class="btn btn-sm btn-primary">Borrow</a>
                             <?php else: ?>
                                 <p class="text-danger">This book is currently unavailable.</p>
                             <?php endif; ?>

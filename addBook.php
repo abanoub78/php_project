@@ -3,51 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Our Library</title>
+    <title>Admin Panel - BookVerse</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body> 
     <!-- Header -->
-    <header class="bg-primary text-white py-3">
-        <div class="container d-flex justify-content-between align-items-center">
-            <h1 class="h3 mb-0">📚 Our Library</h1>
-            <nav class="navbar navbar-expand-lg navbar-dark">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-                        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
-                        aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="books.php">Browse Books</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Categories</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="auth.php">Login/Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="admin.php">Admin Panel</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
-
+    
     <!-- Main Content -->
     <main class="container py-4">
-        <h2 class="mb-4">Admin Panel</h2>
 
             <!-- Add Book Form -->
             <section class="admin-section mb-5">
@@ -101,7 +66,7 @@
     <!-- Footer -->
     <footer class="bg-dark text-white py-4">
         <div class="container text-center">
-            <p class="mb-2">&copy; 2025 Our Library. All rights reserved.</p>
+            <p class="mb-2">&copy; 2025 BookVerse. All rights reserved.</p>
             <div class="social-links">
                 <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>

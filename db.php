@@ -4,10 +4,10 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 class Database {
-    private $host = "127.0.0.1";
+private $host = "127.0.0.1";
     private $dbname = "Library_db";
     private $username = "root";
-    private $password = "";
+    private $password = "qw12QW!@";
     private $conn;
     private static $instance = null;
 

@@ -21,6 +21,8 @@ if (!empty($search)) {
 
 $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,59 +79,79 @@ $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
   <!-- Header -->
+
   <header class="bg-primary text-white py-3">
-    <div class="container d-flex justify-content-between align-items-center">
-      <h1 class="h3 mb-0">📚 BookVerse</h1>
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-           <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link " href="index.php">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="books.php">Browse Books</a>
-                            </li>
-                             <li class="nav-item">
-                                <a class="nav-link" href="books.php">My Books</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="favorites.php">Favorites</a>
-                            </li>                                                       
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.php">Contact Us</a>
-                            </li>
-                        
-                            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Admin Panel
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="list.php">Users</a></li>
-                                        <li><a class="dropdown-item" href="admin.php">Books</a></li>
-                                    </ul>
-                                </li>
-                            <?php endif; ?>
-                        </ul>
-        </div>
-      </nav>
-      <div class="d-flex align-items-center gap-4">
-        <?php if (isset($_SESSION['user_id'])): ?>
-          <span class="me-2">Welcome, <?= htmlspecialchars($_SESSION['fname']) ?></span>
-          <a href="profile.php"><img src="./<?= htmlspecialchars($_SESSION['imgname']) ?>" class="user-avatar"></a>
-        <?php endif; ?>
-                      <?php if (isset($_SESSION['user_id'])): ?>
-                <a class="nav-link" href="logout.php">Logout</a>
-              <?php else: ?>
-                <a class="nav-link" href="register.php">Register</a>
-              <?php endif; ?>
+        <div class="container hcc d-flex justify-content-between align-items-center">
+            <h1 class="h3 mb-0">📚 BookVerse</h1>
+           <nav class="navbar navbar-expand-lg navbar-dark ms-3">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+
+            <!-- Always show Home + Browse -->
+            <li class="nav-item">
+                <a class="nav-link " href="index.php">Home</a>
             </li>
-      </div>
+            <li class="nav-item">
+                <a class="nav-link active" href="books.php">Browse Books</a>
+            </li>
+
+            <?php if (!isset($_SESSION['user_id'])): ?>
+                <!-- Guest -->
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.php">Contact Us</a>
+                </li>
+         
+
+            <?php elseif ($_SESSION['role'] === 'member'): ?>
+                <!-- Member -->
+                <li class="nav-item">
+                    <a class="nav-link " href="mybooks.php">My Books</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="favorites.php">Favorites</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.php">Contact Us</a>
+                </li>
+
+            <?php elseif ($_SESSION['role'] === 'admin'): ?>
+                <!-- Admin -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Admin Panel
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="list.php">Users</a></li>
+                        <li><a class="dropdown-item" href="admin.php">Books</a></li>
+                    </ul>
+                </li>
+            <?php endif; ?>
+        </ul>
     </div>
-  </header>
+  </nav>
+
+<!-- Right side (profile + logout/register) -->
+<div class="d-flex align-items-center gap-4">
+    <?php if (isset($_SESSION['user_id'])): ?>
+        <div class="profile d-flex align-items-center">
+            <span class="welcome-text me-2">Welcome, <?= htmlspecialchars($_SESSION['fname']) ?></span>
+            <a href="profile.php">
+                <img src="./<?= htmlspecialchars($_SESSION['imgname']) ?>" class="user-avatar">
+            </a>
+        </div>
+        <a class="nav-link" href="logout.php">Logout</a>
+    <?php else: ?>
+        <a class="nav-link" href="register.php">Register</a>
+    <?php endif; ?>
+</div>
+
+
+</header>
 
   <!-- Main -->
   <main class="container py-4">
@@ -166,6 +188,7 @@ $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <a href="bookDetails.php?id=<?= $book['book_id'] ?>" class="btn btn-sm btn-outline-primary">Details</a>
                     <a href="borrow.php?id=<?= $book['book_id'] ?>" class="btn btn-sm btn-primary">Borrow</a>
                     <a href="toggle_favorite.php?book_id=<?= $book['book_id'] ?>" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-heart"></i></a>
+
                   </div>
                 </div>
               </div>
