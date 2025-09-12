@@ -53,10 +53,10 @@ like : mangeUser.php,updateProfile.php,deleteUser.php
 
 ## 📸 Screenshots
 
-### 🔹 Admin Dashboard
+### 🔹 User Dashboard
 ![User Dashboard](screenshots/user.png)
 
-### 🔹 Student Dashboard
+### 🔹 Admin Dashboard
 ![Login](screenshots/login.png)
 ![Admin Dashboard](screenshots/adminDash.png)
 ![Admin manageBooks](screenshots/managebook.png)
